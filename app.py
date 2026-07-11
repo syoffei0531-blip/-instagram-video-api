@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 import requests
 import os
 import time
-import tracebackimport traceback
+import traceback
 
 app = Flask(__name__)
 
@@ -16,11 +16,17 @@ def home():
 
 @app.route("/health")
 def health():
-
-@app.route("/create-instagram", methods=["POST"])
-def create_instagram():
+    return {
+        "status": "ok",
+        "service": "instagram-video-api"
+    }
 
     try:
+
+        print("")
+        print("========================================")
+        print("Instagram Reel Upload Started")
+        print("========================================")
         
         video_url = request.form["video_url"]
         caption = request.form.get("caption", "")
@@ -48,13 +54,6 @@ def create_instagram():
         
         if "id" not in result:
             return jsonify(result), 500
-
-        creation_id = result["id"]
-
-        return jsonify({
-            "success": True,
-            "creation_id": creation_id
-        })
 
             # -----------------------------
         # Containerの処理完了待ち
@@ -100,16 +99,18 @@ def create_instagram():
         if "id" not in publish:
             return jsonify(publish), 500
 
-        return jsonify({
-            "success": True,
-            "instagram_post_id": publish["id"]
-        })
-    
-    except Exception as e:
+       return jsonify({
+           "success": True,
+           "creation_id": creation_id,
+           "instagram_post_id": publish["id"],
+           "message": "Instagram Reel published successfully"
+       })
 
-        traceback.print_exc()
+except Exception as e:
 
-        return jsonify({
-            "success": False,
-            "error": str(e)
-        }), 500
+    traceback.print_exc()
+
+    return jsonify({
+        "success": False,
+        "error": str(e)
+    }), 500 
