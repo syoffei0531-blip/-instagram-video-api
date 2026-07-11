@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
+
 import requests
 import os
 import time
+import tracebackimport traceback
 
 app = Flask(__name__)
 
@@ -19,35 +21,95 @@ def health():
 def create_instagram():
 
     try:
-
-        # n8nから受信
-        video = request.files["video"]
+        
+        video_url = request.form["video_url"]
         caption = request.form.get("caption", "")
 
-        # 保存フォルダ
-        os.makedirs("/tmp/instagram", exist_ok=True)
+        print("========== Instagram Upload ==========")
+        print("Video URL:", video_url)
+        print("Caption:", caption)
+        
+        create_url = f"https://graph.facebook.com/v23.0/{IG_USER_ID}/media"
 
-        video_path = "/tmp/instagram/video.mp4"
+        payload = {
+            "media_type": "REELS",
+            "video_url": video_url,
+            "caption": caption,
+            "access_token": ACCESS_TOKEN
+        }
 
-        video.save(video_path)
+        response = requests.post(create_url, data=payload)
+
+        result = response.json()
+
+        print("========== Create Container ==========")
+        print("Status Code:", response.status_code)
+        print("Response:", result)
+        
+        if "id" not in result:
+            return jsonify(result), 500
+
+        creation_id = result["id"]
 
         return jsonify({
             "success": True,
-            "caption": caption,
-            "video": video_path
+            "creation_id": creation_id
         })
 
+            # -----------------------------
+        # Containerの処理完了待ち
+        # -----------------------------
+        status_url = f"https://graph.facebook.com/v23.0/{creation_id}"
+
+        for _ in range(30):
+
+            status = requests.get(
+                status_url,
+                params={
+                    "fields": "status_code",
+                    "access_token": ACCESS_TOKEN
+                }
+            ).json()
+
+            print(status)
+
+            if status.get("status_code") == "FINISHED":
+                break
+
+            if status.get("status_code") == "ERROR":
+                return jsonify(status), 500
+
+            time.sleep(5)
+
+        # -----------------------------
+        # Publish
+        # -----------------------------
+        publish_url = f"https://graph.facebook.com/v23.0/{IG_USER_ID}/media_publish"
+
+        publish = requests.post(
+            publish_url,
+            data={
+                "creation_id": creation_id,
+                "access_token": ACCESS_TOKEN
+            }
+        ).json()
+        
+        print("========== Publish ==========")
+        print(publish)
+        print("Publish ID:", publish.get("id"))        
+        if "id" not in publish:
+            return jsonify(publish), 500
+
+        return jsonify({
+            "success": True,
+            "instagram_post_id": publish["id"]
+        })
+    
     except Exception as e:
+
+        traceback.print_exc()
 
         return jsonify({
             "success": False,
             "error": str(e)
         }), 500
-    
-    return {
-        "status": "ok",
-        "service": "instagram-video-api"
-    }
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
