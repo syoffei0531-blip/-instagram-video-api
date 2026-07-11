@@ -1,11 +1,9 @@
 FROM python:3.12-slim
 
-RUN apt-get update && apt-get install -y ffmpeg && apt-get clean
-
 WORKDIR /app
 
 COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:$PORT app:app"]
+CMD gunicorn app:app --bind 0.0.0.0:$PORT
