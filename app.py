@@ -20,6 +20,8 @@ def health():
         "status": "ok",
         "service": "instagram-video-api"
     }
+@app.route("/create-instagram", methods=["POST"])
+def create_instagram():
 
     try:
 
@@ -55,7 +57,9 @@ def health():
         if "id" not in result:
             return jsonify(result), 500
 
-            # -----------------------------
+        creation_id = result["id"]
+
+        # -----------------------------
         # Containerの処理完了待ち
         # -----------------------------
         status_url = f"https://graph.facebook.com/v23.0/{creation_id}"
@@ -99,18 +103,21 @@ def health():
         if "id" not in publish:
             return jsonify(publish), 500
 
-       return jsonify({
-           "success": True,
-           "creation_id": creation_id,
-           "instagram_post_id": publish["id"],
-           "message": "Instagram Reel published successfully"
-       })
+        return jsonify({
+            "success": True,
+            "creation_id": creation_id,
+            "instagram_post_id": publish["id"],
+            "message": "Instagram Reel published successfully"
+        })
 
-except Exception as e:
+    except Exception as e:
 
-    traceback.print_exc()
+        traceback.print_exc()
 
-    return jsonify({
-        "success": False,
-        "error": str(e)
+        return jsonify({
+            "success": False,
+            "error": str(e)
+            
     }), 500 
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
