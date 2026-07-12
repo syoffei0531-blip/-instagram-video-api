@@ -85,8 +85,6 @@ def create_instagram():
 
         result.check_returncode()
 
-        import os
-
         print("Video Size:", os.path.getsize(output_path))
 
         print("Video Created :", output_path)
