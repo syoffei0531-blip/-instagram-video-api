@@ -30,16 +30,29 @@ def create_instagram():
         print("Instagram Reel Upload Started")
         print("========================================")
         
-        image1 = request.files["image1"]
-        image2 = request.files["image2"]
-        image3 = request.files["image3"]
-        image4 = request.files["image4"]
-
+     
+        image = request.files["image"] 
+        
         audio = request.files["audio"]
+        
         bgm = request.files["bgm"]
+       
         script = request.files["script"]
 
         caption = request.form.get("caption","")
+
+            os.makedirs("/tmp/instagram", exist_ok=True)
+
+            image_path = "/tmp/instagram/image.png"
+            audio_path = "/tmp/instagram/audio.mp3"
+            bgm_path = "/tmp/instagram/bgm.mp3"
+            script_path = "/tmp/instagram/script.txt"
+            subtitle_path = "/tmp/instagram/subtitle.srt"
+
+            image.save(image_path)
+            audio.save(audio_path)
+            bgm.save(bgm_path)
+            script.save(script_path)
         
         print("========== Instagram Upload ==========")
         print("Video URL:", video_url)
@@ -109,11 +122,11 @@ def create_instagram():
         print(publish)
         print("Publish ID:", publish.get("id"))        
         if "id" not in publish:
+            "creation_id": creation_id,
             return jsonify(publish), 500
 
         return jsonify({
             "success": True,
-            "creation_id": creation_id,
             "instagram_post_id": publish["id"],
             "message": "Instagram Reel published successfully"
         })
