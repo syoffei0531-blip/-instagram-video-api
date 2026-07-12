@@ -42,9 +42,12 @@ def create_instagram():
         image_path = os.path.join("images", image)
         bgm_path = os.path.join("bgm", bgm)
 
+        output_path = os.path.join("output", "reel.mp4")
+        
         print("Caption :", caption)
         print("Image :", image_path)
         print("BGM :", bgm_path)
+        print("Output :", output_path)
         
         print("========== Instagram Upload ==========")
        
