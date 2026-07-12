@@ -65,11 +65,10 @@ def create_instagram():
             "-i", image_path,
             "-i", bgm_path,
             "-c:v", "libx264",
-            "-tune", "stillimage",
-            "-c:a", "aac",
-            "-b:a", "192k",
             "-pix_fmt", "yuv420p",
+            "-c:a", "aac",
             "-shortest",
+            "-t", "10",              # ← まず10秒固定でテスト
             "-vf", "scale=1080:1920",
             output_path
         ]
