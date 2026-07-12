@@ -110,9 +110,8 @@ def create_instagram():
         print(publish)
         print("Publish ID:", publish.get("id"))        
         if "id" not in publish:
-            "creation_id": creation_id,
             return jsonify(publish), 500
-
+            
         return jsonify({
             "success": True,
             "instagram_post_id": publish["id"],
