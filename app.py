@@ -31,15 +31,18 @@ def create_instagram():
         print("========================================")
         
      
-        image = request.files["image"] 
-        
-        audio = request.files["audio"]
-        
-        bgm = request.files["bgm"]
-       
-        script = request.files["script"]
+        data = request.get_json()
 
-        caption = request.form.get("caption","")
+        caption = data["caption"]
+        image = data["image"]
+        bgm = data["bgm"]
+
+        image_path = os.path.join("images", image)
+        bgm_path = os.path.join("bgm", bgm)
+
+        print("Caption :", caption)
+        print("Image :", image_path)
+        print("BGM :", bgm_path)
         
         print("========== Instagram Upload ==========")
        
