@@ -30,9 +30,17 @@ def create_instagram():
         print("Instagram Reel Upload Started")
         print("========================================")
         
-        video_url = request.form["video_url"]
-        caption = request.form.get("caption", "")
+        image1 = request.files["image1"]
+        image2 = request.files["image2"]
+        image3 = request.files["image3"]
+        image4 = request.files["image4"]
 
+        audio = request.files["audio"]
+        bgm = request.files["bgm"]
+        script = request.files["script"]
+
+        caption = request.form.get("caption","")
+        
         print("========== Instagram Upload ==========")
         print("Video URL:", video_url)
         print("Caption:", caption)
