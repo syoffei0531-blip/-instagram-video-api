@@ -4,6 +4,8 @@ import requests
 import os
 import time
 import traceback
+import subprocess
+import json
 
 app = Flask(__name__)
 
@@ -47,8 +49,6 @@ def create_instagram():
         print("========== Instagram Upload ==========")
        
         print("Caption:", caption)
-        
-        create_url = f"https://graph.facebook.com/v23.0/{IG_USER_ID}/media"
 
         payload = {
             "media_type": "REELS",
@@ -114,12 +114,6 @@ def create_instagram():
         print("Publish ID:", publish.get("id"))        
         if "id" not in publish:
             return jsonify(publish), 500
-            
-        return jsonify({
-            "success": True,
-            "instagram_post_id": publish["id"],
-            "message": "Instagram Reel published successfully"
-        })
 
     except Exception as e:
 
