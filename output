@@ -1,0 +1,19 @@
+instagram-video-api/
+│
+├── app.py
+├── Dockerfile
+├── requirements.txt
+├── images/
+│   ├── 001.png
+│   ├── 002.png
+│   ├── 003.png
+│   └── 004.png
+│
+├── bgm/
+│   ├── bgm01.mp3
+│   ├── bgm02.mp3
+│   ├── bgm03.mp3
+│   └── bgm04.mp3
+│
+└── output/
+    └── .gitkeep
