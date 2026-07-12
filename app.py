@@ -40,19 +40,6 @@ def create_instagram():
         script = request.files["script"]
 
         caption = request.form.get("caption","")
-
-            os.makedirs("/tmp/instagram", exist_ok=True)
-
-            image_path = "/tmp/instagram/image.png"
-            audio_path = "/tmp/instagram/audio.mp3"
-            bgm_path = "/tmp/instagram/bgm.mp3"
-            script_path = "/tmp/instagram/script.txt"
-            subtitle_path = "/tmp/instagram/subtitle.srt"
-
-            image.save(image_path)
-            audio.save(audio_path)
-            bgm.save(bgm_path)
-            script.save(script_path)
         
         print("========== Instagram Upload ==========")
         print("Video URL:", video_url)
