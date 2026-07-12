@@ -74,7 +74,20 @@ def create_instagram():
             output_path
         ]
 
-        subprocess.run(cmd, check=True)
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True
+        )
+
+        print(result.stdout)
+        print(result.stderr)
+
+        result.check_returncode()
+
+        import os
+
+        print("Video Size:", os.path.getsize(output_path))
 
         print("Video Created :", output_path)
         
