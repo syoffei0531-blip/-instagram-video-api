@@ -42,15 +42,16 @@ def create_instagram():
         caption = request.form.get("caption","")
         
         print("========== Instagram Upload ==========")
-        print("Video URL:", video_url)
+       
         print("Caption:", caption)
         
         create_url = f"https://graph.facebook.com/v23.0/{IG_USER_ID}/media"
 
         payload = {
             "media_type": "REELS",
-            "video_url": video_url,
+        
             "caption": caption,
+                
             "access_token": ACCESS_TOKEN
         }
 
