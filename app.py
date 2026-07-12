@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 
 import requests
 import os
@@ -22,6 +22,15 @@ def health():
         "status": "ok",
         "service": "instagram-video-api"
     }
+    
+@app.route("/video")
+def video():
+
+    return send_file(
+        "output/reel.mp4",
+        mimetype="video/mp4"
+    )
+
 @app.route("/create-instagram", methods=["POST"])
 def create_instagram():
 
@@ -48,16 +57,39 @@ def create_instagram():
         print("Image :", image_path)
         print("BGM :", bgm_path)
         print("Output :", output_path)
+
+        cmd = [
+            "ffmpeg",
+            "-y",
+            "-loop", "1",
+            "-i", image_path,
+            "-i", bgm_path,
+            "-c:v", "libx264",
+            "-tune", "stillimage",
+            "-c:a", "aac",
+            "-b:a", "192k",
+            "-pix_fmt", "yuv420p",
+            "-shortest",
+            "-vf", "scale=1080:1920",
+            output_path
+        ]
+
+        subprocess.run(cmd, check=True)
+
+        print("Video Created :", output_path)
         
         print("========== Instagram Upload ==========")
        
         print("Caption:", caption)
 
+        create_url = f"https://graph.facebook.com/v23.0/{IG_USER_ID}/media"
+
+        video_url = request.url_root.rstrip("/") + "/video"
+
         payload = {
             "media_type": "REELS",
-        
+            "video_url": video_url,
             "caption": caption,
-                
             "access_token": ACCESS_TOKEN
         }
 
@@ -71,7 +103,7 @@ def create_instagram():
         
         if "id" not in result:
             return jsonify(result), 500
-
+            
         creation_id = result["id"]
 
         # -----------------------------
@@ -117,6 +149,11 @@ def create_instagram():
         print("Publish ID:", publish.get("id"))        
         if "id" not in publish:
             return jsonify(publish), 500
+
+        return jsonify({
+            "success": True,
+            "instagram_post_id": publish["id"]
+        })
 
     except Exception as e:
 
