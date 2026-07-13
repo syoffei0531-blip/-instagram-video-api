@@ -92,8 +92,15 @@ def create_instagram():
        
         print("Caption:", caption)
 
+        print("========== ENV ==========")
+        print("IG_USER_ID =", repr(IG_USER_ID))
+        print("ACCESS_TOKEN exists =", ACCESS_TOKEN is not None)
+        print("ACCESS_TOKEN first 20 =", ACCESS_TOKEN[:20] if ACCESS_TOKEN else None)
+        
         create_url = f"https://graph.facebook.com/v23.0/{IG_USER_ID}/media"
 
+        print("Create URL =", create_url)
+        
         video_url = request.url_root.rstrip("/") + "/video"
 
         payload = {
