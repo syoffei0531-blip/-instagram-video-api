@@ -123,10 +123,16 @@ def create_instagram():
             
         creation_id = result["id"]
 
+        print("★★★★ creation_id =", creation_id)
+        
         # -----------------------------
         # Containerの処理完了待ち
         # -----------------------------
         status_url = f"https://graph.facebook.com/v23.0/{creation_id}"
+
+        print("★★★★ status_url =", status_url)
+        
+        print("★★★★ ループ開始")
 
         for _ in range(30):
 
