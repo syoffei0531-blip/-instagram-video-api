@@ -125,59 +125,11 @@ def create_instagram():
 
         print("★★★★ creation_id =", creation_id)
         
-        # -----------------------------
-        # Containerの処理完了待ち
-        # -----------------------------
-        status_url = f"https://graph.facebook.com/v23.0/{creation_id}"
-
-        print("★★★★ status_url =", status_url)
-        
-        print("★★★★ ループ開始")
-
-        for _ in range(30):
-
-            status = requests.get(
-                status_url,
-                params={
-                    "fields": "status_code",
-                    "access_token": ACCESS_TOKEN
-                }
-            ).json()
-
-            print(status)
-
-            if status.get("status_code") == "FINISHED":
-                break
-
-            if status.get("status_code") == "ERROR":
-                return jsonify(status), 500
-
-            time.sleep(5)
-
-        # -----------------------------
-        # Publish
-        # -----------------------------
-        publish_url = f"https://graph.facebook.com/v23.0/{IG_USER_ID}/media_publish"
-
-        publish = requests.post(
-            publish_url,
-            data={
-                "creation_id": creation_id,
-                "access_token": ACCESS_TOKEN
-            }
-        ).json()
-        
-        print("========== Publish ==========")
-        print(publish)
-        print("Publish ID:", publish.get("id"))        
-        if "id" not in publish:
-            return jsonify(publish), 500
-
         return jsonify({
             "success": True,
-            "instagram_post_id": publish["id"]
+            "creation_id": creation_id
         })
-
+        
     except Exception as e:
 
         traceback.print_exc()
@@ -187,5 +139,59 @@ def create_instagram():
             "error": str(e)
             
     }), 500 
+
+    @app.route("/publish-instagram", methods=["POST"])
+    def publish_instagram():
+        
+        try:
+
+            data = request.get_json()
+
+            creation_id = data["creation_id"]
+
+            print("Publish creation_id =", creation_id)
+
+            status_url = f"https://graph.facebook.com/v23.0/{creation_id}"
+
+            status = requests.get(
+                status_url,
+                params={
+                    "fields": "status_code",
+                    "access_token": ACCESS_TOKEN
+                }
+            ).json()
+
+            print("Status =", status)
+
+            if status.get("status_code") != "FINISHED":
+
+                return jsonify({
+                    "success": False,
+                    "status": status
+                })
+
+            publish_url = f"https://graph.facebook.com/v23.0/{IG_USER_ID}/media_publish"
+
+            publish = requests.post(
+                publish_url,
+                data={
+                    "creation_id": creation_id,
+                    "access_token": ACCESS_TOKEN
+                }
+            ).json()
+
+            print("Publish =", publish)
+
+            return jsonify(publish)
+
+        except Exception as e:
+
+            traceback.print_exc()
+
+            return jsonify({
+                "success": False,
+                "error": str(e)
+            }), 500
+            
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
