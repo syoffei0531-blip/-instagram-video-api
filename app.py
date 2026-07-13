@@ -68,7 +68,7 @@ def create_instagram():
             "-pix_fmt", "yuv420p",
             "-c:a", "aac",
             "-shortest",
-            "-t", "10",              # ← まず10秒固定でテスト
+            "-t", "10",              # ← まず30秒固定でテスト
             "-vf", "scale=1080:1920",
             output_path
         ]
