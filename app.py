@@ -185,8 +185,8 @@ def publish_instagram():
         if status.get("status_code") != "FINISHED":
 
             return jsonify({
-                "success": False,
-                "status": status
+               "status": status,
+               "publish": publish
             })
 
         publish_url = f"https://graph.facebook.com/v23.0/{IG_USER_ID}/media_publish"
