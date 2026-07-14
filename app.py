@@ -161,45 +161,45 @@ def publish_instagram():
 
         status_url = f"https://graph.facebook.com/v23.0/{creation_id}"
 
-            status = requests.get(
-                status_url,
-                params={
-                    "fields": "status_code",
-                    "access_token": ACCESS_TOKEN
-                }
-            ).json()
+        status = requests.get(
+            status_url,
+            params={
+                "fields": "status_code",
+                "access_token": ACCESS_TOKEN
+            }
+        ).json()
 
-            print("Status =", status)
+        print("Status =", status)
 
-            if status.get("status_code") != "FINISHED":
-
-                return jsonify({
-                    "success": False,
-                    "status": status
-                })
-
-            publish_url = f"https://graph.facebook.com/v23.0/{IG_USER_ID}/media_publish"
-
-            publish = requests.post(
-                publish_url,
-                data={
-                    "creation_id": creation_id,
-                    "access_token": ACCESS_TOKEN
-                }
-            ).json()
-
-            print("Publish =", publish)
-
-            return jsonify(publish)
-
-        except Exception as e:
-
-            traceback.print_exc()
+        if status.get("status_code") != "FINISHED":
 
             return jsonify({
                 "success": False,
-                "error": str(e)
-            }), 500
+                "status": status
+            })
+
+        publish_url = f"https://graph.facebook.com/v23.0/{IG_USER_ID}/media_publish"
+
+        publish = requests.post(
+            publish_url,
+            data={
+                "creation_id": creation_id,
+                "access_token": ACCESS_TOKEN
+            }
+        ).json()
+
+        print("Publish =", publish)
+
+        return jsonify(publish)
+
+    except Exception as e:
+
+        traceback.print_exc()
+
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
             
 if __name__ == "__main__":
     app.run(
