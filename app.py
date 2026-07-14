@@ -9,6 +9,10 @@ import json
 
 app = Flask(__name__)
 
+print("===== ROUTES =====")
+print(app.url_map)
+print("==================")
+
 ACCESS_TOKEN = os.getenv("IG_ACCESS_TOKEN")
 IG_USER_ID = os.getenv("IG_USER_ID")
 
