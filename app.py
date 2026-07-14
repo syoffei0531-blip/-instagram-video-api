@@ -313,12 +313,6 @@ def publish_instagram():
         print("⑤ Publish終了")
         print(publish_response.status_code)
         print(publish_response.text)
-            publish_url,
-            data={
-                "creation_id": creation_id,
-                "access_token": ACCESS_TOKEN
-            }
-        )
 
         print("========== Publish ==========")
         print("Publish URL =", publish_url)
