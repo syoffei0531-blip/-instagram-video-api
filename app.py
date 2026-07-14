@@ -34,18 +34,28 @@ def routes():
 @app.route("/video")
 def video():
 
-    print("VIDEO EXISTS =", os.path.exists("output/reel.mp4"))
-    print("VIDEO PATH =", os.path.abspath("output/reel.mp4"))
+    try:
+        path = "output/reel.mp4"
 
-    if os.path.exists("output"):
-        print("OUTPUT =", os.listdir("output"))
-    else:
-        print("OUTPUT FOLDER NOT FOUND")
+        print("VIDEO EXISTS =", os.path.exists(path))
+        print("VIDEO PATH =", os.path.abspath(path))
 
-    return send_file(
-        "output/reel.mp4",
-        mimetype="video/mp4"
-    )
+        if os.path.exists("output"):
+            print("OUTPUT =", os.listdir("output"))
+        else:
+            print("OUTPUT FOLDER NOT FOUND")
+
+        return send_file(path, mimetype="video/mp4")
+
+    except Exception as e:
+        traceback.print_exc()
+
+        return jsonify({
+            "error": str(e),
+            "exists": os.path.exists(path),
+            "absolute": os.path.abspath(path),
+            "output": os.listdir("output") if os.path.exists("output") else []
+        }), 500
 
 @app.route("/ffprobe")
 def ffprobe_route():
