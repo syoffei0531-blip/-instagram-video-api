@@ -172,13 +172,18 @@ def publish_instagram():
 
         status_url = f"https://graph.facebook.com/v23.0/{creation_id}"
 
-        status = requests.get(
+        status_response = requests.get(
             status_url,
             params={
                 "fields": "status_code",
                 "access_token": ACCESS_TOKEN
             }
-        ).json()
+        )
+
+        print("Status Code =", status_response.status_code)
+        print("Status Text =", status_response.text)
+
+status = status_response.json()
 
         print("Status =", status)
 
@@ -191,17 +196,23 @@ def publish_instagram():
 
         publish_url = f"https://graph.facebook.com/v23.0/{IG_USER_ID}/media_publish"
 
-        publish = requests.post(
+        publish_response = requests.post(
             publish_url,
             data={
                 "creation_id": creation_id,
                 "access_token": ACCESS_TOKEN
             }
-        ).json()
+        )
 
-        print("Publish =", publish)
+        print("Publish Status =", publish_response.status_code)
+        print("Publish Text =", publish_response.text)
 
-        return jsonify(publish)
+        publish = publish_response.json()
+
+        return jsonify({
+            "status": status,
+            "publish": publish
+        })
 
     except Exception as e:
 
