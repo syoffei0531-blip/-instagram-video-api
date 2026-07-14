@@ -42,6 +42,24 @@ def video():
         mimetype="video/mp4"
     )
 
+@app.route("/ffprobe")
+def ffprobe_route():
+
+    result = subprocess.run(
+        [
+            "ffprobe",
+            "-v", "quiet",
+            "-print_format", "json",
+            "-show_streams",
+            "-show_format",
+            "output/reel.mp4"
+        ],
+        capture_output=True,
+        text=True
+    )
+
+    return result.stdout
+
 @app.route("/me")
 def me():
 
