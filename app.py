@@ -258,7 +258,23 @@ def publish_instagram():
 
         print("Publish creation_id =", creation_id)
 
+        print("① ここまで来た")
+
         status_url = f"https://graph.facebook.com/v23.0/{creation_id}"
+
+        print("② status_url =", status_url)
+
+        status_response = requests.get(
+            status_url,
+            params={
+               "fields": "status_code",
+                "access_token": ACCESS_TOKEN
+            }
+        )
+
+        print("③ requests.get 完了")
+        print(status_response.status_code)
+        print(status_response.text)
 
         status_response = requests.get(
             status_url,
@@ -284,7 +300,19 @@ def publish_instagram():
 
         publish_url = f"https://graph.facebook.com/v23.0/{IG_USER_ID}/media_publish"
 
+        print("④ Publish開始")
+
         publish_response = requests.post(
+            publish_url,
+            data={
+                "creation_id": creation_id,
+                "access_token": ACCESS_TOKEN
+            }
+        )
+
+        print("⑤ Publish終了")
+        print(publish_response.status_code)
+        print(publish_response.text)
             publish_url,
             data={
                 "creation_id": creation_id,
