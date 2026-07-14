@@ -148,7 +148,7 @@ def create_instagram():
             
         }), 500 
 
-    @app.route("/publish-instagram", methods=["POST"])
+@app.route("/publish-instagram", methods=["POST"])
     def publish_instagram():
         
         try:
@@ -204,4 +204,5 @@ def create_instagram():
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0", 
-        port=int(os.environ.get("PORT", 8080)))
+        port=int(os.environ.get("PORT", 8080))
+    )
