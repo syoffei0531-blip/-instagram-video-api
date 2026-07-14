@@ -164,6 +164,10 @@ def create_instagram():
 
         result.check_returncode()
 
+        print("FFmpeg return code =", result.returncode)
+        print("FFmpeg stderr =")
+        print(result.stderr)
+
         print("Exists =", os.path.exists(output_path))
 
         print("Size =", os.path.getsize(output_path) if os.path.exists(output_path) else 0)
@@ -174,6 +178,14 @@ def create_instagram():
             print(os.listdir("output"))
         else:
             print("output folder NOT FOUND")
+
+        print("=== OUTPUT AFTER FFMPEG ===")
+        print("Exists =", os.path.exists(output_path))
+
+        if os.path.exists(output_path):
+            print("Size =", os.path.getsize(output_path))
+        else:
+            print("reel.mp4 NOT FOUND")
 
         print("Video Size:", os.path.getsize(output_path)) 
 
