@@ -295,13 +295,11 @@ def publish_instagram():
         print("Publish Status =", publish_response.status_code)
         print("Publish Text =", publish_response.text)
 
-        publish = publish_response.json()
-
         return jsonify({
             "status": status,
-            "publish": publish
+            "publish_status": publish_response.status_code,
+            "publish_text": publish_response.text
         })
-
     except Exception as e:
 
         traceback.print_exc()
