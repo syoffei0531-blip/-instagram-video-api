@@ -209,10 +209,10 @@ def publish_instagram():
 
         publish = publish_response.json()
 
-            return jsonify({
-                "status": status,
-                "publish": publish
-            })
+        return jsonify({
+            "status": status,
+            "publish": publish
+        })
 
     except Exception as e:
 
