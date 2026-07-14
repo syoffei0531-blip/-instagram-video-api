@@ -37,6 +37,11 @@ def video():
     print("VIDEO EXISTS =", os.path.exists("output/reel.mp4"))
     print("VIDEO PATH =", os.path.abspath("output/reel.mp4"))
 
+    if os.path.exists("output"):
+        print("OUTPUT =", os.listdir("output"))
+    else:
+        print("OUTPUT FOLDER NOT FOUND")
+
     return send_file(
         "output/reel.mp4",
         mimetype="video/mp4"
@@ -133,7 +138,7 @@ def create_instagram():
             "-pix_fmt", "yuv420p",
             "-c:a", "aac",
             "-shortest",
-            "-t", "10",              # ← まず30秒固定でテスト
+            "-t", "10",              # ← まず10秒固定でテスト
             "-vf", "scale=1080:1920",
             output_path
         ]
@@ -152,6 +157,13 @@ def create_instagram():
         print("Exists =", os.path.exists(output_path))
         
         print("Size =", os.path.getsize(output_path) if os.path.exists(output_path) else 0)
+
+        print("========== OUTPUT FOLDER ==========")
+
+        if os.path.exists("output"):
+            print(os.listdir("output"))
+        else:
+            print("output folder NOT FOUND")
 
         print("Video Size:", os.path.getsize(output_path))
 
