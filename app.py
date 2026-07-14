@@ -34,6 +34,9 @@ def routes():
 @app.route("/video")
 def video():
 
+    print("VIDEO PATH =", os.path.abspath("output/reel.mp4"))
+    print("Exists =", os.path.exists("output/reel.mp4"))
+
     return send_file(
         "output/reel.mp4",
         mimetype="video/mp4"
@@ -91,6 +94,9 @@ def create_instagram():
         print(result.stderr)
 
         result.check_returncode()
+        
+        print("Exists =", os.path.exists(output_path))
+        print("Size =", os.path.getsize(output_path) if os.path.exists(output_path) else 0)
 
         print("Video Size:", os.path.getsize(output_path))
 
