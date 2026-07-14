@@ -183,15 +183,15 @@ def publish_instagram():
         print("Status Code =", status_response.status_code)
         print("Status Text =", status_response.text)
 
-status = status_response.json()
+        status = status_response.json()
 
         print("Status =", status)
 
         if status.get("status_code") != "FINISHED":
 
             return jsonify({
-               "status": status,
-               "publish": publish
+               "success": False,
+               "status": status
             })
 
         publish_url = f"https://graph.facebook.com/v23.0/{IG_USER_ID}/media_publish"
