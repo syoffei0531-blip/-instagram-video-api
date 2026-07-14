@@ -149,17 +149,17 @@ def create_instagram():
         }), 500 
 
 @app.route("/publish-instagram", methods=["POST"])
-    def publish_instagram():
+def publish_instagram():
         
-        try:
+    try:
 
-            data = request.get_json()
+        data = request.get_json()
 
-            creation_id = data["creation_id"]
+        creation_id = data["creation_id"]
 
-            print("Publish creation_id =", creation_id)
+        print("Publish creation_id =", creation_id)
 
-            status_url = f"https://graph.facebook.com/v23.0/{creation_id}"
+        status_url = f"https://graph.facebook.com/v23.0/{creation_id}"
 
             status = requests.get(
                 status_url,
