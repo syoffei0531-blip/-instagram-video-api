@@ -153,9 +153,9 @@ def create_instagram():
         print(result.stderr)
 
         result.check_returncode()
-        
+
         print("Exists =", os.path.exists(output_path))
-        
+
         print("Size =", os.path.getsize(output_path) if os.path.exists(output_path) else 0)
 
         print("========== OUTPUT FOLDER ==========")
@@ -165,9 +165,7 @@ def create_instagram():
         else:
             print("output folder NOT FOUND")
 
-        print("Video Size:", os.path.getsize(output_path))
-
-        print("Video Created :", output_path)
+        print("Video Size:", os.path.getsize(output_path)) 
 
         print("Exists =", os.path.exists(output_path))
         
