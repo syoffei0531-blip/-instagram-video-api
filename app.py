@@ -45,21 +45,31 @@ def video():
 @app.route("/ffprobe")
 def ffprobe_route():
 
+    path = "output/reel.mp4"
+
+    print("Exists =", os.path.exists(path))
+    print("Absolute =", os.path.abspath(path))
+
     result = subprocess.run(
         [
             "ffprobe",
-            "-v", "quiet",
-            "-print_format", "json",
-            "-show_streams",
+            "-v", "error",
             "-show_format",
-            "output/reel.mp4"
+            "-show_streams",
+            "-print_format", "json",
+            path
         ],
         capture_output=True,
         text=True
     )
 
-    return result.stdout
-
+    return jsonify({
+        "exists": os.path.exists(path),
+        "absolute": os.path.abspath(path),
+        "stdout": result.stdout,
+        "stderr": result.stderr
+    })
+    
 @app.route("/me")
 def me():
 
