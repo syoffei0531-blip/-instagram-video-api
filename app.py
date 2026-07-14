@@ -146,7 +146,7 @@ def create_instagram():
             "success": False,
             "error": str(e)
             
-    }), 500 
+        }), 500 
 
     @app.route("/publish-instagram", methods=["POST"])
     def publish_instagram():
