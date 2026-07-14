@@ -186,6 +186,8 @@ def create_instagram():
         
         video_url = request.url_root.rstrip("/") + "/video"
 
+        print("Video URL =", video_url)
+
         payload = {
             "media_type": "REELS",
             "video_url": video_url,
