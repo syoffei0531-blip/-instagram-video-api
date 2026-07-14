@@ -26,7 +26,11 @@ def health():
         "status": "ok",
         "service": "instagram-video-api"
     }
-    
+
+@app.route("/routes")
+def routes():
+    return str(app.url_map)
+
 @app.route("/video")
 def video():
 
