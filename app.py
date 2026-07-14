@@ -41,6 +41,32 @@ def video():
         "output/reel.mp4",
         mimetype="video/mp4"
     )
+
+@app.route("/me")
+def me():
+
+    r = requests.get(
+        "https://graph.facebook.com/v23.0/me",
+        params={
+            "access_token": ACCESS_TOKEN
+        }
+    )
+
+    return r.json()
+
+
+@app.route("/ig")
+def ig():
+
+    r = requests.get(
+        f"https://graph.facebook.com/v23.0/{IG_USER_ID}",
+        params={
+            "fields": "id,username",
+            "access_token": ACCESS_TOKEN
+        }
+    )
+
+    return r.json()
     
 @app.route("/create-instagram", methods=["POST"])
 def create_instagram():
