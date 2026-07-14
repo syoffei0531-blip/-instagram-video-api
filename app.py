@@ -292,6 +292,14 @@ def publish_instagram():
             }
         )
 
+        print("========== Publish ==========")
+        print("Publish URL =", publish_url)
+        print("IG_USER_ID =", IG_USER_ID)
+        print("Creation ID =", creation_id)
+        print("Access Token First 20 =", ACCESS_TOKEN[:20] + "...")
+        print("Publish Status =", publish_response.status_code)
+        print("Publish Body =", publish_response.text)
+        
         print("Publish Status =", publish_response.status_code)
         print("Publish Text =", publish_response.text)
 
