@@ -204,8 +204,8 @@ def publish_instagram():
             }
         )
 
-        print("Publish Status =", publish_response.status_code)
-        print("Publish Text =", publish_response.text)
+            print("Publish Status =", publish_response.status_code)
+            print("Publish Text =", publish_response.text)
 
         publish = publish_response.json()
 
