@@ -7,6 +7,15 @@ import traceback
 import subprocess
 import json
 
+VIDEO_DURATION = 30
+
+BGM_START = {
+    "bgm01.mp3": 134,
+    "bgm02.mp3": 85,
+    "bgm03.mp3": 70,
+    "bgm04.mp3": 49
+}
+
 app = Flask(__name__)
 
 print("===== ROUTES =====")
@@ -128,6 +137,10 @@ def create_instagram():
         image = data["image"]
         bgm = data["bgm"]
 
+        bgm_start = BGM_START.get(bgm, 0)
+
+        print("BGM Start =", bgm_start)
+        
         image_path = os.path.join("images", image)
         bgm_path = os.path.join("bgm", bgm)
 
@@ -143,12 +156,13 @@ def create_instagram():
             "-y",
             "-loop", "1",
             "-i", image_path,
+            "-ss", str(bgm_start),
             "-i", bgm_path,
             "-c:v", "libx264",
             "-pix_fmt", "yuv420p",
             "-c:a", "aac",
             "-shortest",
-            "-t", "10",              # ← まず10秒固定でテスト
+            "-t", str(VIDEO_DURATION),
             "-vf", "scale=1080:1920",
             output_path
         ]
