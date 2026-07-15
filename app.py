@@ -7,14 +7,7 @@ import traceback
 import subprocess
 import json
 
-VIDEO_DURATION = 30
-
-BGM_START = {
-    "bgm01.mp3": 134,
-    "bgm02.mp3": 85,
-    "bgm03.mp3": 70,
-    "bgm04.mp3": 49
-}
+from config import VIDEO_DURATION, BGM_CONFIG
 
 app = Flask(__name__)
 
@@ -137,8 +130,10 @@ def create_instagram():
         image = data["image"]
         bgm = data["bgm"]
 
-        bgm_start = BGM_START.get(bgm, 0)
+        config = BGM_CONFIG.get(bgm)
 
+        bgm_start = config["start"]
+        
         print("BGM Start =", bgm_start)
         
         image_path = os.path.join("images", image)
