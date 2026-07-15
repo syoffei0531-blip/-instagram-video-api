@@ -321,6 +321,10 @@ def publish_instagram():
         print("Access Token First 20 =", ACCESS_TOKEN[:20] + "...")
         print("Publish Status =", publish_response.status_code)
         print("Publish Body =", publish_response.text)
+        print("========== RESPONSE ==========")
+        print(publish_response.status_code)
+        print(publish_response.headers)
+        print(publish_response.text)
         
         print("Publish Status =", publish_response.status_code)
         print("Publish Text =", publish_response.text)
