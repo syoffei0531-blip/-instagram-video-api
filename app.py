@@ -310,6 +310,13 @@ def publish_instagram():
             }
         )
 
+        ppublish_json = {}
+
+        try:
+            publish_json = publish_response.json()
+        except:
+            pass
+        
         print("⑤ Publish終了")
         print(publish_response.status_code)
         print(publish_response.text)
@@ -332,7 +339,11 @@ def publish_instagram():
         return jsonify({
             "status": status,
             "publish_status": publish_response.status_code,
-            "publish_text": publish_response.text
+            "publish_text": publish_response.text,
+            "publish_json": publish_json,
+            "creation_id": creation_id,
+           "ig_user_id": IG_USER_ID,
+           "publish_url": publish_url
         })
     except Exception as e:
 
