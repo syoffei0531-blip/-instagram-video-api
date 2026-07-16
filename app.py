@@ -128,6 +128,44 @@ def create_video():
         bgm_start = BGM_CONFIG.get(bgm, {}).get("start", 0)
 
         image_path = os.path.join("images", image)
+
+        # ----------------------------
+        # タイトル描画
+        # ----------------------------
+
+        img = Image.open(image_path).convert("RGB")
+
+        draw = ImageDraw.Draw(img)
+
+        font = ImageFont.truetype(
+            "fonts/NotoSansJP-Bold.ttf",
+            80
+        )
+
+        title = "成功する人が\n仕事でやらないこと"
+
+        draw.multiline_text(
+
+            (540,260),
+
+            title,
+
+            fill=(255,255,255),
+
+            font=font,
+
+            anchor="mm",
+
+            align="center",
+
+            stroke_width=5,
+
+            stroke_fill=(0,0,0)
+
+        )
+
+        img.save(image_path)
+        
         bgm_path = os.path.join("bgm", bgm)
 
         output_path = os.path.join("output", "reel.mp4")
