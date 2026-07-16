@@ -138,10 +138,9 @@ def create_video():
         draw = ImageDraw.Draw(img)
 
         font = ImageFont.truetype(
-            "fonts/NotoSansJP-Bold.ttf",
+            "fonts/NotoSansJP-VariableFont_wght.ttf",
             80
         )
-
         title = "成功する人が\n仕事でやらないこと"
 
         draw.multiline_text(
