@@ -164,7 +164,9 @@ def create_video():
 
         )
 
-        img.save(image_path)
+        text_image_path = os.path.join("output", "text_image.png")
+
+        img.save(text_image_path)
         
         bgm_path = os.path.join("bgm", bgm)
 
