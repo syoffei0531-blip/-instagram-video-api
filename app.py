@@ -228,7 +228,17 @@ def create_instagram():
         image = data["image"]
         bgm = data["bgm"]
         
-        config = BGM_CONFIG.get(bgm)
+        config = BGM_CONFIG.get(bgm, {})
+
+        print("BGM =", bgm)
+        print("CONFIG =", config)
+
+        if not config:
+            return jsonify({
+                "success": False,
+                "error": f"BGM not found: {bgm}",
+                "all": list(BGM_CONFIG.keys())
+            }), 500
 
         bgm_start = config["start"]
 
