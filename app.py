@@ -152,7 +152,7 @@ def create_video():
 
         draw.multiline_text(
 
-            (540,260),
+            (100,100),
 
             title,
 
