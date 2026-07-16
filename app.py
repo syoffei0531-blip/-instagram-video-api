@@ -148,25 +148,19 @@ def create_video():
             "fonts/NotoSansJP-VariableFont_wght.ttf",
             80
         )
-        title = "成功する人が\n仕事でやらないこと"
+
+        title = "成功する人が仕事でやらないこと"
 
         draw.multiline_text(
-
-            (100,100),
-
+            (540,260),
             title,
-
             fill=(255,255,255),
-
             font=font,
-
+            anchor="mm",
+            align="center",
             stroke_width=5,
-
             stroke_fill=(0,0,0)
-
         )
-
-        text_image_path = os.path.join("output", "text_image.png")
 
         img.save(text_image_path)
         
@@ -178,7 +172,7 @@ def create_video():
             "ffmpeg",
             "-y",
             "-loop", "1",
-            "-i", text_image_path,
+            "-i", image_path,
             "-ss", str(bgm_start),
             "-i", bgm_path,
             "-c:v", "libx264",
