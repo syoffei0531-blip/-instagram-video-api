@@ -257,9 +257,9 @@ def create_instagram():
         draw = ImageDraw.Draw(img)
 
         font = ImageFont.truetype(
-            "fonts/ShipporiMincho-Regular.ttf",
+            "fonts/NotoSansJP-VariableFont_wght.ttf",
             72
-        )
+        )  
 
         # ←これを先に
         title = data["title"]
