@@ -153,15 +153,38 @@ def create_video():
 
         title = data["title"]
 
+        # ---------- Shadow ----------
+
         draw.multiline_text(
-            (540,320),
+            (542, 702),
             title,
-            fill=(255,255,255),
             font=font,
+            fill=(0, 0, 0),
             anchor="mm",
             align="center",
-            stroke_width=5,
-            stroke_fill=(0,0,0)
+            spacing=16
+        )
+
+        draw.multiline_text(
+            (541, 701),
+            title,
+            font=font,
+            fill=(40, 40, 40),
+            anchor="mm",
+            align="center",
+            spacing=16
+        )
+
+        # ---------- Main ----------
+
+        draw.multiline_text(
+            (540, 350),
+            title,
+            font=font,
+            fill=(248, 244, 236),
+            anchor="mm",
+            align="center",
+            spacing=16
         )
 
         text_image_path = os.path.join("output", "text_image.png")
@@ -258,8 +281,8 @@ def create_instagram():
 
         font = ImageFont.truetype(
             "fonts/NotoSansJP-VariableFont_wght.ttf",
-            72
-        )  
+            68
+        )
 
         # ←これを先に
         title = data["title"]
