@@ -257,8 +257,8 @@ def create_instagram():
         draw = ImageDraw.Draw(img)
 
         font = ImageFont.truetype(
-            "fonts/NotoSansJP-VariableFont_wght.ttf",
-            60
+            "fonts/ShipporiMincho-Regular.ttf",
+            72
         )
 
         # ←これを先に
