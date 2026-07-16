@@ -148,13 +148,13 @@ def create_video():
 
         font = ImageFont.truetype(
             "fonts/NotoSansJP-VariableFont_wght.ttf",
-            80
+            60
         )
 
         title = data["title"]
 
         draw.multiline_text(
-            (540,260),
+            (540,320),
             title,
             fill=(255,255,255),
             font=font,
@@ -227,6 +227,8 @@ def create_instagram():
         caption = data["caption"]
         image = data["image"]
         bgm = data["bgm"]
+
+        caption = "\n" + caption
         
         config = BGM_CONFIG.get(bgm, {})
 
