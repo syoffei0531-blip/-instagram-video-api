@@ -231,6 +231,10 @@ def create_instagram():
         config = BGM_CONFIG.get(bgm)
 
         bgm_start = config["start"]
+
+        print("BGM =", bgm)
+        print("CONFIG =", config)
+        print("ALL CONFIG =", BGM_CONFIG)
         
         print("BGM Start =", bgm_start)
         
