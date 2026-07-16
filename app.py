@@ -149,7 +149,7 @@ def create_video():
             80
         )
 
-        title = "成功する人が仕事でやらないこと"
+        title = data["title"]
 
         draw.multiline_text(
             (540,260),
