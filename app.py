@@ -112,7 +112,62 @@ def ig():
     )
 
     return r.json()
-    
+
+@app.route("/create-video", methods=["POST"])
+def create_video():
+
+    try:
+
+        data = request.get_json()
+
+        image = data["image"]
+        bgm = data["bgm"]
+
+        bgm_start = BGM_CONFIG.get(bgm, {}).get("start", 0)
+
+        image_path = os.path.join("images", image)
+        bgm_path = os.path.join("bgm", bgm)
+
+        output_path = os.path.join("output", "reel.mp4")
+
+        cmd = [
+            "ffmpeg",
+            "-y",
+            "-loop", "1",
+            "-i", image_path,
+            "-ss", str(bgm_start),
+            "-i", bgm_path,
+            "-c:v", "libx264",
+            "-pix_fmt", "yuv420p",
+            "-c:a", "aac",
+            "-shortest",
+            "-t", str(VIDEO_DURATION),
+            "-vf", "scale=1080:1920",
+            output_path
+        ]
+
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True
+        )
+
+        result.check_returncode()
+
+        return jsonify({
+            "success": True,
+            "video": "/video"
+        })
+
+    except Exception as e:
+
+        traceback.print_exc()
+
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
 @app.route("/create-instagram", methods=["POST"])
 def create_instagram():
 
