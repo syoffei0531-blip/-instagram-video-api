@@ -129,9 +129,11 @@ def create_video():
 
         data = request.get_json()
 
+        title = data["title"]
+        caption = data["caption"]
         image = data["image"]
         bgm = data["bgm"]
-
+        
         bgm_start = BGM_CONFIG.get(bgm, {}).get("start", 0)
 
         image_path = os.path.join("images", image)
@@ -162,6 +164,8 @@ def create_video():
             stroke_fill=(0,0,0)
         )
 
+        text_image_path = os.path.join("output", "text_image.png")
+        
         img.save(text_image_path)
         
         bgm_path = os.path.join("bgm", bgm)
@@ -172,7 +176,7 @@ def create_video():
             "ffmpeg",
             "-y",
             "-loop", "1",
-            "-i", image_path,
+            "-i", text_image_path,
             "-ss", str(bgm_start),
             "-i", bgm_path,
             "-c:v", "libx264",
@@ -219,10 +223,11 @@ def create_instagram():
      
         data = request.get_json()
 
+        title = data["title"]
         caption = data["caption"]
         image = data["image"]
         bgm = data["bgm"]
-
+        
         config = BGM_CONFIG.get(bgm)
 
         bgm_start = config["start"]
@@ -230,6 +235,34 @@ def create_instagram():
         print("BGM Start =", bgm_start)
         
         image_path = os.path.join("images", image)
+
+        img = Image.open(image_path).convert("RGB")
+
+        draw = ImageDraw.Draw(img)
+
+        font = ImageFont.truetype(
+            "fonts/NotoSansJP-VariableFont_wght.ttf",
+            80
+        )
+
+        draw.multiline_text(
+            (540,260),
+            title,
+            fill=(255,255,255),
+            font=font,
+            anchor="mm",
+            align="center",
+            stroke_width=5,
+            stroke_fill=(0,0,0)
+        )
+
+        text_image_path = os.path.join("output", "text_image.png")
+        img.save(text_image_path)
+
+        bgm_path = os.path.join("bgm", bgm)
+
+        output_path = os.path.join("output", "reel.mp4")
+
         bgm_path = os.path.join("bgm", bgm)
 
         output_path = os.path.join("output", "reel.mp4")
@@ -244,7 +277,7 @@ def create_instagram():
             "ffmpeg",
             "-y",
             "-loop", "1",
-            "-i", image_path,
+            "-i", text_image_path,
             "-ss", str(bgm_start),
             "-i", bgm_path,
             "-c:v", "libx264",
