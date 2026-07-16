@@ -276,7 +276,7 @@ def create_instagram():
             title = title[:split] + "\n" + title[split:]
         
         draw.multiline_text(
-            (540,500),
+            (540,340),
             title,
             fill=(255,255,255),
             font=font,
