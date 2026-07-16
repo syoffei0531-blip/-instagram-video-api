@@ -24,6 +24,13 @@ IG_USER_ID = os.getenv("IG_USER_ID")
 def home():
     return "Instagram API OK!"
 
+@app.route("/preview")
+def preview():
+    return send_file(
+        "output/text_image.png",
+        mimetype="image/png"
+    )
+
 @app.route("/health")
 def health():
     return {
