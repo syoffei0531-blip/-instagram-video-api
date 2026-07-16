@@ -235,6 +235,7 @@ def create_instagram():
         output_path = os.path.join("output", "reel.mp4")
         
         print("Caption :", caption)
+        print("Title :", title)
         print("Image :", image_path)
         print("BGM :", bgm_path)
         print("Output :", output_path)
