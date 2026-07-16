@@ -174,7 +174,7 @@ def create_video():
             "ffmpeg",
             "-y",
             "-loop", "1",
-            "-i", image_path,
+            "-i", text_image_path,
             "-ss", str(bgm_start),
             "-i", bgm_path,
             "-c:v", "libx264",
@@ -446,8 +446,8 @@ def publish_instagram():
             "publish_text": publish_response.text,
             "publish_json": publish_json,
             "creation_id": creation_id,
-           "ig_user_id": IG_USER_ID,
-           "publish_url": publish_url
+            "ig_user_id": IG_USER_ID,
+            "publish_url": publish_url
         })
     except Exception as e:
 
