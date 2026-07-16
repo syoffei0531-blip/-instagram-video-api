@@ -258,11 +258,25 @@ def create_instagram():
 
         font = ImageFont.truetype(
             "fonts/NotoSansJP-VariableFont_wght.ttf",
-            80
+            60
         )
 
+        # ←これを先に
+        title = data["title"]
+
+        # タイトルが長い場合は自動で2行にする
+        if len(title) > 14:
+            split = len(title) // 2
+
+            for i in range(split, len(title)):
+                if title[i] in " 、。":
+                    split = i + 1
+                    break
+
+            title = title[:split] + "\n" + title[split:]
+        
         draw.multiline_text(
-            (540,260),
+            (540,320),
             title,
             fill=(255,255,255),
             font=font,
