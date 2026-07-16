@@ -160,10 +160,6 @@ def create_video():
 
             font=font,
 
-            anchor="mm",
-
-            align="center",
-
             stroke_width=5,
 
             stroke_fill=(0,0,0)
