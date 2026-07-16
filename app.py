@@ -1,3 +1,5 @@
+from PIL import Image, ImageDraw, ImageFont
+
 from flask import Flask, request, jsonify, send_file
 
 import requests
