@@ -185,7 +185,7 @@ def create_video():
             (WIDTH // 2 + 2, HEIGHT // 2 - 118),
             title,
             font=font,
-            fill=(248, 244, 236),
+            fill=(235, 205, 120),
             anchor="mm",
             align="center",
             spacing=25
