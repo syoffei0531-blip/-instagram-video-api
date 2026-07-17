@@ -4,6 +4,8 @@
 
 VIDEO_DURATION = 50
 
+WIDTH = 1080
+HEIGHT = 1920
 # ---------- TEXT ----------
 
 TITLE_FONT_SIZE = 80
