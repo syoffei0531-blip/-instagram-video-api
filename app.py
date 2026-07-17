@@ -166,7 +166,7 @@ def create_video():
         )
 
         draw.multiline_text(
-            (541, 701),
+            (WIDTH // 2 + 2, HEIGHT // 2 - 118)
             title,
             font=font,
             fill=(40, 40, 40),
@@ -178,7 +178,7 @@ def create_video():
         # ---------- Main ----------
 
         draw.multiline_text(
-            (540, 350),
+            (WIDTH // 2 + 2, HEIGHT // 2 - 118)
             title,
             font=font,
             fill=(248, 244, 236),
@@ -299,7 +299,7 @@ def create_instagram():
             title = title[:split] + "\n" + title[split:]
         
         draw.multiline_text(
-            (540,340),
+            (WIDTH // 2, HEIGHT // 2 - 120),
             title,
             fill=(255,255,255),
             font=font,
