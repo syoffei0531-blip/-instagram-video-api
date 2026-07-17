@@ -2,7 +2,7 @@
 # Video
 # ==========================
 
-VIDEO_DURATION = 30
+VIDEO_DURATION = 50
 
 # ---------- TEXT ----------
 
