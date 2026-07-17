@@ -388,7 +388,7 @@ def create_instagram():
             (WIDTH // 2, HEIGHT // 2 - 134),
             title,
             font=font,
-            fill=(225,190,90),,
+            fill=(225,190,90),
             anchor="mm",
             align="center",
             spacing=25
