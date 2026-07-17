@@ -9,8 +9,12 @@ import traceback
 import subprocess
 import json
 
-from config import VIDEO_DURATION, BGM_CONFIG
-
+from config import (
+    VIDEO_DURATION,
+    BGM_CONFIG,
+    WIDTH,
+    HEIGHT
+)
 app = Flask(__name__)
 
 print("===== ROUTES =====")
