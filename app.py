@@ -156,7 +156,7 @@ def create_video():
         # ---------- Shadow ----------
 
         draw.multiline_text(
-            (542, 702),
+            (WIDTH // 2 + 2, HEIGHT // 2 - 118),
             title,
             font=font,
             fill=(0, 0, 0),
@@ -166,7 +166,7 @@ def create_video():
         )
 
         draw.multiline_text(
-            (WIDTH // 2 + 2, HEIGHT // 2 - 118)
+            (WIDTH // 2 + 2, HEIGHT // 2 - 118),
             title,
             font=font,
             fill=(40, 40, 40),
@@ -178,7 +178,7 @@ def create_video():
         # ---------- Main ----------
 
         draw.multiline_text(
-            (WIDTH // 2 + 2, HEIGHT // 2 - 118)
+            (WIDTH // 2 + 2, HEIGHT // 2 - 118),
             title,
             font=font,
             fill=(248, 244, 236),
