@@ -41,7 +41,7 @@ FPS = 30
 
 BGM_CONFIG = {
     "bgm01.mp3": {
-        "start": 120,
+        "start": 110,
         "volume": 0.18
     },
     "bgm02.mp3": {
