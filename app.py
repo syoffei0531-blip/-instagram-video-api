@@ -305,40 +305,6 @@ def create_instagram():
 
         gold = (205, 170, 70)
 
-        # 上ライン
-        draw.line(
-            (280, HEIGHT // 2 - 160, 480, HEIGHT // 2 - 180),
-            fill=gold,
-            width=2
-        )
-
-        draw.line(
-            (600, HEIGHT // 2 - 160, 800, HEIGHT // 2 - 180),
-            fill=gold,
-            width=2
-        )
-
-        # 下ライン
-        draw.line(
-            (280, HEIGHT // 2 + 95, 480, HEIGHT // 2 + 60),
-            fill=gold,
-            width=2
-        )
-
-        draw.line(
-            (600, HEIGHT // 2 + 95, 800, HEIGHT // 2 + 60),
-            fill=gold,
-            width=2
-        )
-
-        # 中央の飾り
-        draw.text(
-            (540, HEIGHT // 2 - 220),
-            "✧",
-            fill=gold,
-            font=font,
-            anchor="mm"
-        )
 
         draw.text(
             (540, HEIGHT // 2 + 100),
