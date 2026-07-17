@@ -1,4 +1,0 @@
-font = ImageFont.truetype(
-    "fonts/NotoSerifJP-Regular.ttf",
-    72
-)
