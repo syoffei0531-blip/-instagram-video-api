@@ -307,26 +307,26 @@ def create_instagram():
 
         # 上ライン
         draw.line(
-            (280, HEIGHT // 2 - 180, 480, HEIGHT // 2 - 180),
+            (280, HEIGHT // 2 - 160, 480, HEIGHT // 2 - 180),
             fill=gold,
             width=2
         )
 
         draw.line(
-            (600, HEIGHT // 2 - 180, 800, HEIGHT // 2 - 180),
+            (600, HEIGHT // 2 - 160, 800, HEIGHT // 2 - 180),
             fill=gold,
             width=2
         )
 
         # 下ライン
         draw.line(
-            (280, HEIGHT // 2 + 60, 480, HEIGHT // 2 + 60),
+            (280, HEIGHT // 2 + 95, 480, HEIGHT // 2 + 60),
             fill=gold,
             width=2
         )
 
         draw.line(
-            (600, HEIGHT // 2 + 60, 800, HEIGHT // 2 + 60),
+            (600, HEIGHT // 2 + 95, 800, HEIGHT // 2 + 60),
             fill=gold,
             width=2
         )
@@ -377,7 +377,7 @@ def create_instagram():
             (WIDTH // 2, HEIGHT // 2 - 132),
             title,
             font=font,
-            fill=(225, 185, 90),
+            fill=(215,175,75),
             anchor="mm",
             align="center",
             spacing=25
