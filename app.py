@@ -162,7 +162,7 @@ def create_video():
             fill=(0, 0, 0),
             anchor="mm",
             align="center",
-            spacing=16
+            spacing=25
         )
 
         draw.multiline_text(
@@ -172,7 +172,7 @@ def create_video():
             fill=(40, 40, 40),
             anchor="mm",
             align="center",
-            spacing=16
+            spacing=25
         )
 
         # ---------- Main ----------
@@ -184,7 +184,7 @@ def create_video():
             fill=(248, 244, 236),
             anchor="mm",
             align="center",
-            spacing=16
+            spacing=25
         )
 
         text_image_path = os.path.join("output", "text_image.png")
