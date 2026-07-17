@@ -285,7 +285,7 @@ def create_instagram():
 
         font = ImageFont.truetype(
             "fonts/ZenOldMincho-Medium.ttf",
-            58
+            64
         )
         
 
@@ -302,17 +302,96 @@ def create_instagram():
                     break
 
             title = title[:split] + "\n" + title[split:]
-        
-        draw.multiline_text(
-            (WIDTH // 2, HEIGHT // 2 - 120),
-            title,
-            fill=(255,255,255),
+
+        gold = (205, 170, 70)
+
+        # 上ライン
+        draw.line(
+            (220, HEIGHT // 2 - 210, 500, HEIGHT // 2 - 210),
+            fill=gold,
+            width=2
+        )
+
+        draw.line(
+            (580, HEIGHT // 2 - 210, 860, HEIGHT // 2 - 210),
+            fill=gold,
+            width=2
+        )
+
+        # 下ライン
+        draw.line(
+            (220, HEIGHT // 2 + 110, 500, HEIGHT // 2 + 110),
+            fill=gold,
+            width=2
+        )
+
+        draw.line(
+            (580, HEIGHT // 2 + 110, 860, HEIGHT // 2 + 110),
+            fill=gold,
+            width=2
+        )
+
+        # 中央の飾り
+        draw.text(
+            (540, HEIGHT // 2 - 220),
+            "✧",
+            fill=gold,
             font=font,
+            anchor="mm"
+        )
+
+        draw.text(
+            (540, HEIGHT // 2 + 100),
+            "✧",
+            fill=gold,
+            font=font,
+            anchor="mm"
+        )
+        
+        # ---------- Main ----------
+
+        # シャドウ
+        draw.multiline_text(
+            (WIDTH // 2 + 4, HEIGHT // 2 - 126),
+            title,
+            font=font,
+            fill=(70, 50, 20),
             anchor="mm",
             align="center",
-            spacing=18,
-            stroke_width=5,
-            stroke_fill=(0,0,0)
+            spacing=25
+        )
+
+        # 濃い金
+        draw.multiline_text(
+            (WIDTH // 2, HEIGHT // 2 - 130),
+            title,
+            font=font,
+            fill=(180, 130, 40),
+            anchor="mm",
+            align="center",
+            spacing=25
+        )
+
+        # 中間金
+        draw.multiline_text(
+            (WIDTH // 2, HEIGHT // 2 - 132),
+            title,
+            font=font,
+            fill=(225, 185, 90),
+            anchor="mm",
+            align="center",
+            spacing=25
+        )
+
+        # ハイライト
+        draw.multiline_text(
+            (WIDTH // 2, HEIGHT // 2 - 134),
+            title,
+            font=font,
+            fill=(255, 245, 210),
+            anchor="mm",
+            align="center",
+            spacing=25
         )
 
         text_image_path = os.path.join("output", "text_image.png")
