@@ -2,7 +2,7 @@
 # Video
 # ==========================
 
-VIDEO_DURATION = 50
+VIDEO_DURATION = 60
 
 WIDTH = 1080
 HEIGHT = 1920
